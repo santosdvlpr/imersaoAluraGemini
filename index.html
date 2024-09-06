@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <!-- metadados para o navegador -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <!-- link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet"-->
+
+    <title>Receitas e Despesas</title>
+</head>
+    <!-- código para a página -->
+<body class="body">
+    <header>
+        <h1>Plano de Contas</h1>
+    </header>
+    <main>
+        <section>
+            <div class="form-group">
+                <label for="de" >Código Inicial</label>
+                <input type="text" id="de" placeholder="Código inicial do filtro 99" aria-labelledby="de">
+                <label for="ate">Código Final</label>
+                <input type="text" id="ate" placeholder="Código final do filtro 99" aria-labelledby="ate">
+                <button id="pesquisar" onclick="pesquisar(document.getElementById('de').value,document.getElementById('ate').value)">Pesquisar</button>
+                <button id="cadastrar" onclick="cadastrar(event)">Nova conta</button>
+                <button id="inicializar" onclick="inicializar(event)">Inicializar base de dados</button>
+            </div>
+        </section>  
+        <section class="resultados-pesquisa" id="resultados-pesquisa"></section>  
+    </main>    
+    <footer>
+        <p class="footer">Entre em contatos pelo email nossosvalores@hotmail.com 
+        <strong>HUMBT - 2024</strong>. Todos os direitos reservados.</p> 
+    </footer>   
+
+    <script src="dados.js" lang="text/javascript"></script>
+    <script src="app.js" lang="text/javascript"></script>
+</body>
+</html>
+
+
+
+
