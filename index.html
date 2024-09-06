@@ -18,9 +18,9 @@
         <section>
             <div class="form-group">
                 <label for="de" >Código Inicial</label>
-                <input type="text" id="de" placeholder="Código inicial do filtro 99" aria-labelledby="de">
+                <input type="number" id="de" placeholder="Código inicial 99" aria-labelledby="de">
                 <label for="ate">Código Final</label>
-                <input type="text" id="ate" placeholder="Código final do filtro 99" aria-labelledby="ate">
+                <input type="number" id="ate" placeholder="Código final 99" aria-labelledby="ate">
                 <button id="pesquisar" onclick="pesquisar(document.getElementById('de').value,document.getElementById('ate').value)">Pesquisar</button>
                 <button id="cadastrar" onclick="cadastrar(event)">Nova conta</button>
                 <button id="inicializar" onclick="inicializar(event)">Inicializar base de dados</button>
