@@ -82,6 +82,7 @@ function pesquisar(de,ate) {
      * em modo de leitura/escrita no objeto store "tbDespesas".
      */
     dbContas.onsuccess = (event) => {
+        var pelomenosum = 0;
         const db = event.target.result;
         const transaction = db.transaction("tbDespesas", "readwrite");
         const tbLista = transaction.objectStore("tbDespesas");
@@ -102,57 +103,63 @@ function pesquisar(de,ate) {
         adicionando os eventos de clique para cada um. E Adiciona a linha à tabela. 
         */
         cursorRequest.onsuccess = (event) => {
-            const cursor = event.target.result;
-            if (cursor) {
-                // Creia a linha e celulas da tabela de resultados 
-                const linhaDados = document.createElement('tr');
-                const celulaDados1 = document.createElement('td');
-                celulaDados1.textContent = cursor.value.id;
-                const celulaDados2 = document.createElement('td');
-                // Preenche a célula co o título do registro lido
-                celulaDados2.textContent = cursor.value.titulo;
-                celulaDados2.setAttribute("class","descricao-meta");
-                const celulaDados3 = document.createElement('td');
-                // Preenche a célula co o título do registro lido
-                celulaDados3.textContent = cursor.value.valor;
-                celulaDados3.setAttribute("align","right");
-                
-                // Criar o botão editar
-                var botaoEditar = document.createElement("button");
-                botaoEditar.textContent = "Editar";
-                botaoEditar.setAttribute('id', cursor.value.id);
-               // Adiciona evento onclick
-                botaoEditar.onclick = function(event) {
-                    cadastrar(event);
-                };
-                // Criar o botão excluir
-                var botaoExcluir = document.createElement("button");
-                botaoExcluir.textContent = "Excluir";
-                botaoExcluir.setAttribute('id', cursor.value.id);
-               // Adiciona evento onclick
-                botaoExcluir.onclick = function(event) {
-                    excluir(event);
-                };
-                // Adicionar os botões ao documento
-                const celulaDados4 = document.createElement('td');
-                celulaDados4.appendChild(botaoExcluir);
-                const celulaDados5 = document.createElement('td');
-                celulaDados5.appendChild(botaoEditar);
-                
-                //linhaDados.appendChild(celulaDados1);
-                linhaDados.appendChild(celulaDados2);
-                linhaDados.appendChild(celulaDados3);
-                linhaDados.appendChild(celulaDados4);
-                linhaDados.appendChild(celulaDados5);
-                // Adiciona a linha à tabela.
-                tabela.appendChild(linhaDados);
-                cursor.continue();
-            } else {
-                //Após iterar por todos os registros, a tabela é adicionada ao DOM.
-                document.getElementById("resultados-pesquisa").innerHTML="";
-                document.getElementById("resultados-pesquisa").appendChild(tabela);
-                console.log("Busca concluída.");
-            }
+                const cursor = event.target.result;
+                if (cursor) {
+                    // Creia a linha e celulas da tabela de resultados 
+                    const linhaDados = document.createElement('tr');
+                    const celulaDados1 = document.createElement('td');
+                    celulaDados1.textContent = cursor.value.id;
+                    const celulaDados2 = document.createElement('td');
+                    // Preenche a célula co o título do registro lido
+                    celulaDados2.textContent = cursor.value.titulo;
+                    celulaDados2.setAttribute("class","descricao-meta");
+                    const celulaDados3 = document.createElement('td');
+                    // Preenche a célula co o título do registro lido
+                    celulaDados3.textContent = cursor.value.valor;
+                    celulaDados3.setAttribute("align","right");
+                    
+                    // Criar o botão editar
+                    var botaoEditar = document.createElement("button");
+                    botaoEditar.textContent = "Editar";
+                    botaoEditar.setAttribute('id', cursor.value.id);
+                // Adiciona evento onclick
+                    botaoEditar.onclick = function(event) {
+                        cadastrar(event);
+                    };
+                    // Criar o botão excluir
+                    var botaoExcluir = document.createElement("button");
+                    botaoExcluir.textContent = "Excluir";
+                    botaoExcluir.setAttribute('id', cursor.value.id);
+                // Adiciona evento onclick
+                    botaoExcluir.onclick = function(event) {
+                        excluir(event);
+                    };
+                    // Adicionar os botões ao documento
+                    const celulaDados4 = document.createElement('td');
+                    celulaDados4.appendChild(botaoExcluir);
+                    const celulaDados5 = document.createElement('td');
+                    celulaDados5.appendChild(botaoEditar);
+                    
+                    //linhaDados.appendChild(celulaDados1);
+                    linhaDados.appendChild(celulaDados2);
+                    linhaDados.appendChild(celulaDados3);
+                    linhaDados.appendChild(celulaDados4);
+                    linhaDados.appendChild(celulaDados5);
+                    // Adiciona a linha à tabela.
+                    tabela.appendChild(linhaDados);
+                    pelomenosum = 1;
+                    cursor.continue();
+                } else {
+                    //Após iterar por todos os registros, a tabela é adicionada ao DOM.
+                    document.getElementById("resultados-pesquisa").innerHTML="";
+                    if(pelomenosum == 1){
+                        document.getElementById("resultados-pesquisa").appendChild(tabela);
+                    }else{
+                        const paragrafo = document.createElement('p');
+                        paragrafo.textContent = "Nada encontradao na pesquisa";
+                        document.getElementById("resultados-pesquisa").appendChild(paragrafo);
+                    }
+                }    
         }
     }
 }
