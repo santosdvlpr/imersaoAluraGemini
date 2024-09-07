@@ -41,12 +41,11 @@ Vamos juntos cuidar do seu dinheiro!
 
 #finançaspessoais #javascript #indexeddb #desenvolvimentoweb
 
-[Inserir aqui um GIF animado de um porquinho feliz guardando moedas]
 
-[https://github.com/santosdvlpr/imersaoAluraGemini]
+Link para o repositório: https://github.com/santosdvlpr/imersaoAluraGemini
 
-[imersaoAluraGemini.com/index.html]
+Link da página: https://imersao-alura-gemini-pi.vercel.app/
 
-[humbdsp@hotmail.com]
+[Developer: Humberto dos Santos Pinto]
 
-[Data]
+[Data: 06/09/2024]
